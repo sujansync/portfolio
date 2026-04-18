@@ -1,17 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {Menu, X, ExternalLink, Code, Layers, Globe, Mail, Phone, MapPin, Briefcase, Award, ArrowRight, Code2 as Github, Zap, TrendingUp, Users} from 'lucide-react';
 import profileImg from '@/images/Sujan_Pic.js';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrollY, setScrollY] = useState(0);
   const [activeTab, setActiveTab] = useState('all');
-
-  useEffect(() => {
-    const handleScroll = () => setScrollY(window.scrollY);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const projects = [
     {
@@ -157,7 +150,7 @@ export default function Portfolio() {
       {/* Hero Section */}
       <section id="home" className="pt-32 pb-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          <div style={{ transform: `translateY(${scrollY * 0.5}px)` }}>
+          <div>
             <div className="mb-6 inline-block">
               <span className="inline-block px-4 py-2 bg-gradient-to-r from-blue-100 to-purple-100 dark:from-blue-900/30 dark:to-purple-900/30 text-blue-700 dark:text-blue-300 rounded-full text-sm font-bold border border-blue-200 dark:border-blue-800">
                 🚀 Welcome
@@ -195,7 +188,7 @@ export default function Portfolio() {
             </div>
           </div>
 
-          <div className="relative" style={{ transform: `translateY(${scrollY * 0.3}px)` }}>
+          <div className="relative">
             <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-3xl blur-3xl opacity-40 animate-pulse"></div>
             <div className="relative bg-gradient-to-br from-blue-600 via-purple-600 to-pink-600 rounded-3xl p-2 shadow-2xl">
               <div className="bg-white dark:bg-gray-900 rounded-3xl overflow-hidden">
