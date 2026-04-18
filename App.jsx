@@ -145,12 +145,6 @@ export default function Portfolio() {
                   {item}
                 </a>
               ))}
-              <a
-                href="mailto:contactsujan247@gmail.com"
-                className="ml-4 px-5 py-2 text-sm font-bold rounded-lg bg-gradient-to-r from-cyan-500 to-violet-500 text-white hover:opacity-90 transition shadow-lg shadow-cyan-500/20"
-              >
-                Hire Me
-              </a>
             </div>
 
             <button className="md:hidden text-gray-400 hover:text-white transition" onClick={() => setIsMenuOpen(!isMenuOpen)}>
@@ -182,11 +176,6 @@ export default function Portfolio() {
 
             {/* Left */}
             <div>
-              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-cyan-500/30 bg-cyan-500/10 text-cyan-400 text-xs font-bold mb-8 tracking-widest uppercase">
-                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
-                Open to Opportunities
-              </div>
-
               <h1 className="text-6xl sm:text-7xl lg:text-8xl font-black mb-6 leading-[0.9] tracking-tight">
                 <span className="text-white block">Sujan</span>
                 <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-violet-400 bg-clip-text text-transparent">
