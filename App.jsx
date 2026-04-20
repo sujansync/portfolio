@@ -118,7 +118,7 @@ export default function Portfolio() {
     {
       degree: 'Bachelor of Engineering – Computer Science & Engineering',
       institution: 'Visvesvaraya Technological University',
-      location: 'Bangalore, India',
+      location: 'Bangalore',
       period: 'Jun 2017 – Aug 2021',
       gpa: '3.86',
       courses: ['C#', 'C++', 'Java', 'Python', 'Web Development'],
