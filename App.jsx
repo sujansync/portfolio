@@ -2,6 +2,35 @@ import React, { useState } from 'react';
 import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp, GraduationCap, Award, Briefcase, MapPin, Calendar, ChevronDown } from 'lucide-react';
 import profileImg from '@/images/Sujan_Pic.js';
 
+function WindowPanel({ children, url, gradient = 'from-cyan-500/50 via-blue-500/30 to-violet-500/50' }) {
+  return (
+    <div
+      className="rounded-2xl overflow-hidden border border-white/[0.09] shadow-[0_32px_80px_-8px_rgba(0,0,0,0.75)]"
+      style={{ background: 'linear-gradient(160deg, rgba(13,17,30,0.97) 0%, rgba(7,9,15,0.99) 100%)' }}
+    >
+      {/* Accent line */}
+      <div className={`h-[1.5px] w-full bg-gradient-to-r ${gradient}`} />
+      {/* Chrome bar */}
+      <div className="flex items-center gap-3 px-4 py-2.5 border-b border-white/[0.05]"
+           style={{ background: 'rgba(255,255,255,0.018)' }}>
+        <div className="flex items-center gap-1.5 flex-shrink-0">
+          <div className="w-3 h-3 rounded-full bg-[#ff5f57]/80 hover:bg-[#ff5f57] transition-colors cursor-default" />
+          <div className="w-3 h-3 rounded-full bg-[#febc2e]/80 hover:bg-[#febc2e] transition-colors cursor-default" />
+          <div className="w-3 h-3 rounded-full bg-[#28c840]/80 hover:bg-[#28c840] transition-colors cursor-default" />
+        </div>
+        <div className="flex-1 flex justify-center">
+          <div className="flex items-center gap-2 bg-white/[0.04] border border-white/[0.07] rounded-md px-3 py-1 max-w-xs w-full">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-400/60 flex-shrink-0" />
+            <span className="text-[11px] text-gray-600 font-mono truncate">{url}</span>
+          </div>
+        </div>
+        <div className="w-16 flex-shrink-0" />
+      </div>
+      {children}
+    </div>
+  );
+}
+
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
@@ -148,7 +177,6 @@ export default function Portfolio() {
       period: 'May 2025 – Present',
       current: true,
       icon: '🏗️',
-      color: 'cyan',
       bullets: [
         'Develop and maintain custom Revit Add-Ins and automation tools using C# and the Autodesk Revit API.',
         'Design BIM automation scripts and workflows to improve engineering design productivity and project delivery efficiency.',
@@ -166,7 +194,6 @@ export default function Portfolio() {
       period: 'Jan 2025 – May 2025',
       current: false,
       icon: '🔐',
-      color: 'violet',
       bullets: [
         'Supported enterprise network security, configuration, and infrastructure monitoring for IT and operational technology environments.',
         'Monitored system performance and analyzed security risks to ensure infrastructure reliability.',
@@ -182,7 +209,6 @@ export default function Portfolio() {
       period: 'Aug 2023 – May 2025',
       current: false,
       icon: '🔬',
-      color: 'blue',
       bullets: [
         'Conducted research and data analysis on healthcare datasets related to adverse drug reactions.',
         'Developed machine learning models for speech enhancement and accent conversion.',
@@ -198,7 +224,6 @@ export default function Portfolio() {
       period: 'Aug 2021 – Jan 2024',
       current: false,
       icon: '⚙️',
-      color: 'violet',
       bullets: [
         'Managed SAP HANA replication and high-availability cluster environments for enterprise systems.',
         'Implemented SAML-based Single Sign-On (SSO) across SAP applications.',
@@ -213,7 +238,6 @@ export default function Portfolio() {
       period: 'Apr 2021 – Sep 2021',
       current: false,
       icon: '📚',
-      color: 'cyan',
       bullets: [
         'Delivered training programs in data science, Python programming, advanced Excel, and web development.',
         'Prepared course materials and technical learning modules for software development education.',
@@ -352,20 +376,17 @@ export default function Portfolio() {
               </div>
 
               <div className="relative animate-float">
-                {/* Gradient border frame */}
                 <div className="w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 rounded-3xl p-[2px] bg-gradient-to-br from-cyan-500 via-blue-500 to-violet-600 shadow-2xl shadow-cyan-500/20">
                   <div className="w-full h-full rounded-[22px] bg-gray-900 overflow-hidden">
                     <img src={profileImg} alt="Sujan Khadka" className="w-full h-full object-cover" />
                   </div>
                 </div>
 
-                {/* Badge — degree */}
                 <div className="absolute -bottom-5 -right-5 px-4 py-3 rounded-2xl border border-cyan-500/20 bg-gray-900/95 backdrop-blur-xl shadow-2xl">
                   <p className="text-sm font-black text-white">🎓 MSCS</p>
                   <p className="text-xs text-cyan-400 font-semibold">UT Tyler</p>
                 </div>
 
-                {/* Badge — specialization */}
                 <div className="absolute -top-5 -left-5 px-3 py-2 rounded-xl border border-violet-500/20 bg-gray-900/95 backdrop-blur-xl shadow-2xl">
                   <p className="text-xs font-bold text-violet-400">Revit API</p>
                   <p className="text-[11px] text-gray-600">Specialist</p>
@@ -378,440 +399,460 @@ export default function Portfolio() {
       </section>
 
       {/* ── Experience ── */}
-      <section id="experience" className="py-28 px-4 sm:px-6 lg:px-8">
+      <section id="experience" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-5xl mx-auto">
+          <WindowPanel url="sujan-khadka.dev/experience" gradient="from-cyan-500/50 via-blue-500/30 to-violet-500/50">
+            <div className="p-8 md:p-10">
 
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Career</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Professional Experience</h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
-              A track record across BIM development, enterprise systems, AI research, and technical training
-            </p>
-          </div>
+              <div className="text-center mb-12">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Career</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Professional Experience</h2>
+                <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+                  A track record across BIM development, enterprise systems, AI research, and technical training
+                </p>
+              </div>
 
-          <div className="relative">
-            {/* Timeline spine */}
-            <div className="absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-500/60 via-violet-500/30 to-transparent hidden sm:block" />
+              <div className="relative">
+                <div className="absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-500/60 via-violet-500/30 to-transparent hidden sm:block" />
 
-            <div className="space-y-6">
-              {experience.map((exp, i) => (
-                <div key={i} className="relative sm:pl-20">
+                <div className="space-y-6">
+                  {experience.map((exp, i) => (
+                    <div key={i} className="relative sm:pl-20">
 
-                  {/* Timeline node */}
-                  <div className="hidden sm:flex absolute left-0 top-6 flex-col items-center">
-                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl border-2 shadow-lg z-10 ${
-                      exp.current
-                        ? 'bg-gradient-to-br from-cyan-500/30 to-violet-500/30 border-cyan-500/60 shadow-cyan-500/25'
-                        : 'bg-gray-900 border-white/[0.10]'
-                    }`}>
-                      {exp.icon}
-                    </div>
-                    {exp.current && (
-                      <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/60 animate-pulse" />
-                    )}
-                  </div>
-
-                  {/* Card */}
-                  <div className={`group relative rounded-2xl border transition-all duration-300 hover:shadow-2xl overflow-hidden ${
-                    exp.current
-                      ? 'border-cyan-500/25 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.03] hover:border-cyan-500/40 hover:shadow-cyan-500/10'
-                      : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:shadow-white/5'
-                  }`}>
-
-                    {/* Card inner glow */}
-                    <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-cyan-500/5 blur-3xl group-hover:bg-cyan-500/10 transition pointer-events-none" />
-
-                    {/* Clickable header */}
-                    <button
-                      onClick={() => toggleExp(i)}
-                      className="relative w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 cursor-pointer"
-                    >
-                      <div className="flex items-start gap-3 flex-1 min-w-0">
-                        {/* Mobile icon */}
-                        <div className={`sm:hidden w-10 h-10 rounded-xl flex items-center justify-center text-lg border flex-shrink-0 ${
-                          exp.current ? 'bg-cyan-500/15 border-cyan-500/30' : 'bg-white/[0.05] border-white/[0.08]'
+                      <div className="hidden sm:flex absolute left-0 top-6 flex-col items-center">
+                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl border-2 shadow-lg z-10 ${
+                          exp.current
+                            ? 'bg-gradient-to-br from-cyan-500/30 to-violet-500/30 border-cyan-500/60 shadow-cyan-500/25'
+                            : 'bg-gray-900 border-white/[0.10]'
                         }`}>
                           {exp.icon}
                         </div>
-                        <div className="min-w-0">
-                          <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                            <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition leading-snug">
-                              {exp.role}
-                            </h3>
-                            {exp.current && (
-                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-[10px] font-black tracking-wide">
-                                CURRENT
-                              </span>
-                            )}
-                          </div>
-                          <p className="text-sm font-bold text-cyan-400">{exp.company}</p>
-                          <div className="flex flex-wrap items-center gap-3 mt-1">
-                            <span className="flex items-center gap-1 text-xs text-gray-600">
-                              <MapPin size={11} /> {exp.location}
-                            </span>
-                            <span className="flex items-center gap-1 text-xs text-gray-600">
-                              <Calendar size={11} /> {exp.period}
-                            </span>
-                          </div>
-                          {/* Tech tags always visible */}
-                          <div className="flex flex-wrap gap-1.5 mt-3">
-                            {exp.tech.map((t, j) => (
-                              <span
-                                key={j}
-                                className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
-                              >
-                                {t}
-                              </span>
-                            ))}
-                          </div>
-                        </div>
+                        {exp.current && (
+                          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/60 animate-pulse" />
+                        )}
                       </div>
 
-                      {/* Chevron toggle */}
-                      <div className={`flex-shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center transition-all duration-300 mt-0.5 ${
-                        expandedExp.has(i)
-                          ? 'bg-cyan-500/15 border-cyan-500/30 text-cyan-400'
-                          : 'bg-white/[0.04] border-white/[0.08] text-gray-600 group-hover:border-white/20 group-hover:text-gray-400'
+                      <div className={`group relative rounded-2xl border transition-all duration-300 hover:shadow-2xl overflow-hidden ${
+                        exp.current
+                          ? 'border-cyan-500/25 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.03] hover:border-cyan-500/40 hover:shadow-cyan-500/10'
+                          : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:shadow-white/5'
                       }`}>
-                        <ChevronDown
-                          size={15}
-                          className={`transition-transform duration-300 ${expandedExp.has(i) ? 'rotate-180' : ''}`}
-                        />
-                      </div>
-                    </button>
 
-                    {/* Expandable bullets */}
-                    {expandedExp.has(i) && (
-                      <div className="relative px-6 sm:px-7 pb-6 sm:pb-7">
-                        <div className="h-px bg-gradient-to-r from-white/[0.06] to-transparent mb-5" />
-                        <ul className="space-y-2.5">
-                          {exp.bullets.map((b, j) => (
-                            <li key={j} className="flex gap-3 text-sm text-gray-500 leading-relaxed">
-                              <span className="text-cyan-500/50 mt-[5px] flex-shrink-0 text-xs">▸</span>
-                              {b}
-                            </li>
-                          ))}
-                        </ul>
+                        <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-cyan-500/5 blur-3xl group-hover:bg-cyan-500/10 transition pointer-events-none" />
+
+                        <button
+                          onClick={() => toggleExp(i)}
+                          className="relative w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 cursor-pointer"
+                        >
+                          <div className="flex items-start gap-3 flex-1 min-w-0">
+                            <div className={`sm:hidden w-10 h-10 rounded-xl flex items-center justify-center text-lg border flex-shrink-0 ${
+                              exp.current ? 'bg-cyan-500/15 border-cyan-500/30' : 'bg-white/[0.05] border-white/[0.08]'
+                            }`}>
+                              {exp.icon}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                                <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition leading-snug">
+                                  {exp.role}
+                                </h3>
+                                {exp.current && (
+                                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-[10px] font-black tracking-wide">
+                                    CURRENT
+                                  </span>
+                                )}
+                              </div>
+                              <p className="text-sm font-bold text-cyan-400">{exp.company}</p>
+                              <div className="flex flex-wrap items-center gap-3 mt-1">
+                                <span className="flex items-center gap-1 text-xs text-gray-600">
+                                  <MapPin size={11} /> {exp.location}
+                                </span>
+                                <span className="flex items-center gap-1 text-xs text-gray-600">
+                                  <Calendar size={11} /> {exp.period}
+                                </span>
+                              </div>
+                              <div className="flex flex-wrap gap-1.5 mt-3">
+                                {exp.tech.map((t, j) => (
+                                  <span
+                                    key={j}
+                                    className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                                  >
+                                    {t}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+
+                          <div className={`flex-shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center transition-all duration-300 mt-0.5 ${
+                            expandedExp.has(i)
+                              ? 'bg-cyan-500/15 border-cyan-500/30 text-cyan-400'
+                              : 'bg-white/[0.04] border-white/[0.08] text-gray-600 group-hover:border-white/20 group-hover:text-gray-400'
+                          }`}>
+                            <ChevronDown
+                              size={15}
+                              className={`transition-transform duration-300 ${expandedExp.has(i) ? 'rotate-180' : ''}`}
+                            />
+                          </div>
+                        </button>
+
+                        {expandedExp.has(i) && (
+                          <div className="relative px-6 sm:px-7 pb-6 sm:pb-7">
+                            <div className="h-px bg-gradient-to-r from-white/[0.06] to-transparent mb-5" />
+                            <ul className="space-y-2.5">
+                              {exp.bullets.map((b, j) => (
+                                <li key={j} className="flex gap-3 text-sm text-gray-500 leading-relaxed">
+                                  <span className="text-cyan-500/50 mt-[5px] flex-shrink-0 text-xs">▸</span>
+                                  {b}
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                       </div>
-                    )}
-                  </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
             </div>
-          </div>
+          </WindowPanel>
         </div>
       </section>
 
       {/* ── Projects ── */}
-      <section id="projects" className="py-28 px-4 sm:px-6 lg:px-8">
+      <section id="projects" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          <WindowPanel url="sujan-khadka.dev/projects" gradient="from-violet-500/50 via-pink-500/20 to-cyan-500/50">
+            <div className="p-8 md:p-10">
 
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Portfolio</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Featured Projects</h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
-              Innovative solutions across BIM, enterprise systems, and AI technologies
-            </p>
-          </div>
-
-          <div className="flex flex-wrap justify-center gap-2 mb-12">
-            {TABS.map(tab => (
-              <button
-                key={tab}
-                onClick={() => setActiveTab(tab)}
-                className={`px-4 py-2 rounded-lg text-sm font-bold transition ${
-                  activeTab === tab
-                    ? 'bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/20'
-                    : 'border border-white/[0.06] bg-white/[0.03] text-gray-500 hover:border-cyan-500/30 hover:text-cyan-400 hover:bg-cyan-400/5'
-                }`}
-              >
-                {tab === 'all' ? 'All Projects' : tab}
-              </button>
-            ))}
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {filteredProjects.map(project => (
-              <div
-                key={project.id}
-                className="group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-violet-500/0 group-hover:from-cyan-500/[0.04] group-hover:to-violet-500/[0.04] transition-all duration-300 pointer-events-none" />
-
-                <div className="h-40 bg-gradient-to-br from-gray-800/60 to-gray-900/60 flex items-center justify-center text-6xl border-b border-white/[0.05] group-hover:text-7xl transition-all duration-300">
-                  {project.image}
-                </div>
-
-                <div className="relative p-6">
-                  <span className="text-[11px] font-bold text-cyan-500 tracking-widest uppercase">
-                    {project.category}
-                  </span>
-                  <h3 className="text-base font-bold text-white mt-1.5 mb-2 group-hover:text-cyan-300 transition">
-                    {project.title}
-                  </h3>
-                  <p className="text-gray-600 text-sm leading-relaxed mb-4">{project.description}</p>
-
-                  <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold mb-4">
-                    <TrendingUp size={13} /> {project.impact}
-                  </div>
-
-                  <div className="flex flex-wrap gap-1.5 mb-5">
-                    {project.tags.map((tag, i) => (
-                      <span
-                        key={i}
-                        className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-
-                  <a
-                    href={project.link}
-                    className="inline-flex items-center gap-1.5 text-cyan-500 hover:text-cyan-300 text-sm font-bold transition"
-                  >
-                    View Details <ExternalLink size={13} />
-                  </a>
-                </div>
+              <div className="text-center mb-12">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Portfolio</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Featured Projects</h2>
+                <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+                  Innovative solutions across BIM, enterprise systems, and AI technologies
+                </p>
               </div>
-            ))}
-          </div>
+
+              <div className="flex flex-wrap justify-center gap-2 mb-10">
+                {TABS.map(tab => (
+                  <button
+                    key={tab}
+                    onClick={() => setActiveTab(tab)}
+                    className={`px-4 py-2 rounded-lg text-sm font-bold transition ${
+                      activeTab === tab
+                        ? 'bg-gradient-to-r from-cyan-500 to-violet-500 text-white shadow-lg shadow-cyan-500/20'
+                        : 'border border-white/[0.06] bg-white/[0.03] text-gray-500 hover:border-cyan-500/30 hover:text-cyan-400 hover:bg-cyan-400/5'
+                    }`}
+                  >
+                    {tab === 'all' ? 'All Projects' : tab}
+                  </button>
+                ))}
+              </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {filteredProjects.map(project => (
+                  <div
+                    key={project.id}
+                    className="group relative rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 transition-all duration-300 overflow-hidden hover:shadow-2xl hover:shadow-cyan-500/10 hover:-translate-y-1"
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 to-violet-500/0 group-hover:from-cyan-500/[0.04] group-hover:to-violet-500/[0.04] transition-all duration-300 pointer-events-none" />
+
+                    <div className="h-40 bg-gradient-to-br from-gray-800/60 to-gray-900/60 flex items-center justify-center text-6xl border-b border-white/[0.05] group-hover:text-7xl transition-all duration-300">
+                      {project.image}
+                    </div>
+
+                    <div className="relative p-6">
+                      <span className="text-[11px] font-bold text-cyan-500 tracking-widest uppercase">
+                        {project.category}
+                      </span>
+                      <h3 className="text-base font-bold text-white mt-1.5 mb-2 group-hover:text-cyan-300 transition">
+                        {project.title}
+                      </h3>
+                      <p className="text-gray-600 text-sm leading-relaxed mb-4">{project.description}</p>
+
+                      <div className="flex items-center gap-1.5 text-emerald-400 text-xs font-bold mb-4">
+                        <TrendingUp size={13} /> {project.impact}
+                      </div>
+
+                      <div className="flex flex-wrap gap-1.5 mb-5">
+                        {project.tags.map((tag, i) => (
+                          <span
+                            key={i}
+                            className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+
+                      <a
+                        href={project.link}
+                        className="inline-flex items-center gap-1.5 text-cyan-500 hover:text-cyan-300 text-sm font-bold transition"
+                      >
+                        View Details <ExternalLink size={13} />
+                      </a>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </WindowPanel>
         </div>
       </section>
 
       {/* ── Skills ── */}
-      <section id="skills" className="py-28 px-4 sm:px-6 lg:px-8">
+      <section id="skills" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          <WindowPanel url="sujan-khadka.dev/skills" gradient="from-cyan-500/50 via-emerald-500/20 to-blue-500/50">
+            <div className="p-8 md:p-10">
 
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Expertise</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Technical Skills</h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-sm">
-              A broad toolkit spanning engineering automation, AI, and enterprise infrastructure
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {skills.map((group, i) => (
-              <div
-                key={i}
-                className="group p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 hover:bg-cyan-500/[0.03] transition-all duration-300"
-              >
-                <div className="flex items-center gap-3 mb-5">
-                  <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-cyan-500/40 transition">
-                    <Zap size={18} className="text-cyan-400" />
-                  </div>
-                  <h3 className="font-bold text-white text-sm">{group.category}</h3>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {group.items.map((skill, j) => (
-                    <span
-                      key={j}
-                      className="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08] text-gray-500 text-xs font-semibold hover:border-cyan-500/30 hover:text-cyan-400 hover:bg-cyan-500/[0.06] transition cursor-default"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
+              <div className="text-center mb-12">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Expertise</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Technical Skills</h2>
+                <p className="text-gray-600 max-w-xl mx-auto text-sm">
+                  A broad toolkit spanning engineering automation, AI, and enterprise infrastructure
+                </p>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* ── Education ── */}
-      <section id="education" className="py-28 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Background</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Education</h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
-              Academic foundations and degrees
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-5">
-            {education.map((edu, i) => (
-              <div
-                key={i}
-                className="group relative p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 hover:bg-cyan-500/[0.03] transition-all duration-300 overflow-hidden"
-              >
-                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition pointer-events-none" />
-
-                <div className="relative">
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-cyan-500/40 transition">
-                      <GraduationCap size={20} className="text-cyan-400" />
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+                {skills.map((group, i) => (
+                  <div
+                    key={i}
+                    className="group p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 hover:bg-cyan-500/[0.03] transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-3 mb-5">
+                      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-cyan-500/40 transition">
+                        <Zap size={18} className="text-cyan-400" />
+                      </div>
+                      <h3 className="font-bold text-white text-sm">{group.category}</h3>
                     </div>
-                    <div>
-                      <h3 className="text-base font-bold text-white leading-snug group-hover:text-cyan-300 transition">
-                        {edu.degree}
-                      </h3>
-                      <p className="text-sm text-cyan-400 font-semibold mt-0.5">{edu.institution}</p>
-                      <p className="text-xs text-gray-600 mt-0.5">{edu.location} · {edu.period}</p>
-                    </div>
-                  </div>
 
-                  <div className="flex items-center gap-2 mb-5">
-                    <span className="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
-                      GPA {edu.gpa}
-                    </span>
-                  </div>
-
-                  <div>
-                    <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Relevant Coursework</p>
-                    <div className="flex flex-wrap gap-1.5">
-                      {edu.courses.map((c, j) => (
+                    <div className="flex flex-wrap gap-2">
+                      {group.items.map((skill, j) => (
                         <span
                           key={j}
-                          className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                          className="px-3 py-1.5 rounded-lg bg-white/[0.05] border border-white/[0.08] text-gray-500 text-xs font-semibold hover:border-cyan-500/30 hover:text-cyan-400 hover:bg-cyan-500/[0.06] transition cursor-default"
                         >
-                          {c}
+                          {skill}
                         </span>
                       ))}
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
-            ))}
-          </div>
 
+            </div>
+          </WindowPanel>
+        </div>
+      </section>
+
+      {/* ── Education ── */}
+      <section id="education" className="py-16 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <WindowPanel url="sujan-khadka.dev/education" gradient="from-blue-500/50 via-cyan-500/20 to-violet-500/50">
+            <div className="p-8 md:p-10">
+
+              <div className="text-center mb-12">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Background</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Education</h2>
+                <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+                  Academic foundations and degrees
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                {education.map((edu, i) => (
+                  <div
+                    key={i}
+                    className="group relative p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 hover:bg-cyan-500/[0.03] transition-all duration-300 overflow-hidden"
+                  >
+                    <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition pointer-events-none" />
+
+                    <div className="relative">
+                      <div className="flex items-start gap-4 mb-5">
+                        <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-cyan-500/40 transition">
+                          <GraduationCap size={20} className="text-cyan-400" />
+                        </div>
+                        <div>
+                          <h3 className="text-base font-bold text-white leading-snug group-hover:text-cyan-300 transition">
+                            {edu.degree}
+                          </h3>
+                          <p className="text-sm text-cyan-400 font-semibold mt-0.5">{edu.institution}</p>
+                          <p className="text-xs text-gray-600 mt-0.5">{edu.location} · {edu.period}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2 mb-5">
+                        <span className="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
+                          GPA {edu.gpa}
+                        </span>
+                      </div>
+
+                      <div>
+                        <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Relevant Coursework</p>
+                        <div className="flex flex-wrap gap-1.5">
+                          {edu.courses.map((c, j) => (
+                            <span
+                              key={j}
+                              className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                            >
+                              {c}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </WindowPanel>
         </div>
       </section>
 
       {/* ── Certifications ── */}
-      <section id="certifications" className="py-28 px-4 sm:px-6 lg:px-8">
+      <section id="certifications" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          <WindowPanel url="sujan-khadka.dev/certifications" gradient="from-violet-500/50 via-purple-500/20 to-cyan-500/50">
+            <div className="p-8 md:p-10">
 
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Credentials</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Certifications</h2>
-            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
-              Professional certifications and licenses
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-            {certifications.map((cert, i) => (
-              <div
-                key={i}
-                className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 hover:bg-violet-500/[0.03] transition-all duration-300"
-              >
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/40 transition">
-                  <Award size={16} className="text-violet-400" />
-                </div>
-                <div className="min-w-0">
-                  <p className="text-sm font-bold text-gray-200 leading-snug truncate group-hover:text-white transition">
-                    {cert.name}
-                  </p>
-                  <p className="text-xs text-gray-600 mt-0.5">
-                    {cert.issuer}{cert.year ? ` · ${cert.year}` : ''}
-                  </p>
-                </div>
+              <div className="text-center mb-12">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Credentials</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Certifications</h2>
+                <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+                  Professional certifications and licenses
+                </p>
               </div>
-            ))}
-          </div>
 
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                {certifications.map((cert, i) => (
+                  <div
+                    key={i}
+                    className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 hover:bg-violet-500/[0.03] transition-all duration-300"
+                  >
+                    <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/40 transition">
+                      <Award size={16} className="text-violet-400" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold text-gray-200 leading-snug truncate group-hover:text-white transition">
+                        {cert.name}
+                      </p>
+                      <p className="text-xs text-gray-600 mt-0.5">
+                        {cert.issuer}{cert.year ? ` · ${cert.year}` : ''}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </WindowPanel>
         </div>
       </section>
 
-      {/* ── Testimonials ── */}
-      <section id="reviews" className="py-28 px-4 sm:px-6 lg:px-8">
+      {/* ── Reviews ── */}
+      <section id="reviews" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
+          <WindowPanel url="sujan-khadka.dev/reviews" gradient="from-amber-500/40 via-orange-500/20 to-violet-500/50">
+            <div className="p-8 md:p-10">
 
-          <div className="text-center mb-16">
-            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Reviews</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">What People Say</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-5">
-            {testimonials.map((t, i) => (
-              <div
-                key={i}
-                className="relative p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 transition-all duration-300 overflow-hidden group hover:-translate-y-1"
-              >
-                <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-violet-500/10 blur-3xl group-hover:bg-violet-500/20 transition" />
-
-                <div className="relative">
-                  <div className="flex gap-0.5 mb-5">
-                    {[...Array(t.rating)].map((_, j) => (
-                      <span key={j} className="text-yellow-400 text-base">★</span>
-                    ))}
-                  </div>
-                  <p className="text-gray-500 italic mb-6 leading-relaxed text-sm group-hover:text-gray-400 transition">
-                    "{t.text}"
-                  </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center text-white text-sm font-black flex-shrink-0">
-                      {t.name[0]}
-                    </div>
-                    <div>
-                      <p className="text-sm font-bold text-gray-200">{t.name}</p>
-                      <p className="text-xs text-gray-600">{t.company}</p>
-                    </div>
-                  </div>
-                </div>
+              <div className="text-center mb-12">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Reviews</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">What People Say</h2>
               </div>
-            ))}
-          </div>
+
+              <div className="grid md:grid-cols-3 gap-5">
+                {testimonials.map((t, i) => (
+                  <div
+                    key={i}
+                    className="relative p-6 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 transition-all duration-300 overflow-hidden group hover:-translate-y-1"
+                  >
+                    <div className="absolute -top-10 -right-10 w-32 h-32 rounded-full bg-violet-500/10 blur-3xl group-hover:bg-violet-500/20 transition" />
+
+                    <div className="relative">
+                      <div className="flex gap-0.5 mb-5">
+                        {[...Array(t.rating)].map((_, j) => (
+                          <span key={j} className="text-yellow-400 text-base">★</span>
+                        ))}
+                      </div>
+                      <p className="text-gray-500 italic mb-6 leading-relaxed text-sm group-hover:text-gray-400 transition">
+                        "{t.text}"
+                      </p>
+                      <div className="flex items-center gap-3">
+                        <div className="w-9 h-9 rounded-full bg-gradient-to-br from-cyan-500 to-violet-500 flex items-center justify-center text-white text-sm font-black flex-shrink-0">
+                          {t.name[0]}
+                        </div>
+                        <div>
+                          <p className="text-sm font-bold text-gray-200">{t.name}</p>
+                          <p className="text-xs text-gray-600">{t.company}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+            </div>
+          </WindowPanel>
         </div>
       </section>
 
       {/* ── Contact ── */}
-      <section id="contact" className="py-28 px-4 sm:px-6 lg:px-8">
+      <section id="contact" className="py-16 px-4 sm:px-6 lg:px-8">
         <div className="max-w-4xl mx-auto">
-          <div className="relative rounded-3xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
-            {/* Inner glow */}
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-cyan-500/10 rounded-full blur-3xl" />
-            </div>
-
-            <div className="relative p-10 md:p-16 text-center">
-              <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Contact</p>
-              <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Let's Build Something</h2>
-              <p className="text-gray-600 mb-10 max-w-lg mx-auto text-sm leading-relaxed">
-                Always open to discussing new opportunities, innovative projects, and meaningful collaborations.
-              </p>
-
-              <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
-                <a
-                  href="mailto:contactsujan247@gmail.com"
-                  className="px-7 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white rounded-xl font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 hover:scale-[1.02]"
-                >
-                  <Mail size={17} /> Send Email
-                </a>
-                <a
-                  href="https://www.linkedin.com/in/sujan-khadka"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-7 py-3.5 border border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl font-bold transition flex items-center justify-center gap-2 hover:border-white/20 hover:scale-[1.02]"
-                >
-                  Connect on LinkedIn
-                </a>
+          <WindowPanel url="sujan-khadka.dev/contact" gradient="from-cyan-500/50 via-blue-500/30 to-violet-500/50">
+            <div className="relative overflow-hidden">
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] bg-cyan-500/8 rounded-full blur-3xl" />
               </div>
 
-              <div className="grid sm:grid-cols-3 gap-4">
-                {[
-                  { label: 'Email', value: 'contactsujan247@gmail.com', href: 'mailto:contactsujan247@gmail.com' },
-                  { label: 'Phone', value: '903-508-3807', href: 'tel:9035083807' },
-                  { label: 'Location', value: 'Tyler, Texas', href: null },
-                ].map((item, i) => (
-                  <div key={i} className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.03]">
-                    <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">{item.label}</p>
-                    {item.href ? (
-                      <a href={item.href} className="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition break-all">
-                        {item.value}
-                      </a>
-                    ) : (
-                      <p className="text-sm font-bold text-gray-300">{item.value}</p>
-                    )}
-                  </div>
-                ))}
+              <div className="relative p-10 md:p-14 text-center">
+                <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Contact</p>
+                <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Let's Build Something</h2>
+                <p className="text-gray-600 mb-10 max-w-lg mx-auto text-sm leading-relaxed">
+                  Always open to discussing new opportunities, innovative projects, and meaningful collaborations.
+                </p>
+
+                <div className="flex flex-col sm:flex-row gap-3 justify-center mb-12">
+                  <a
+                    href="mailto:contactsujan247@gmail.com"
+                    className="px-7 py-3.5 bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-400 hover:to-blue-400 text-white rounded-xl font-bold transition flex items-center justify-center gap-2 shadow-lg shadow-cyan-500/20 hover:scale-[1.02]"
+                  >
+                    <Mail size={17} /> Send Email
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/sujan-khadka"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="px-7 py-3.5 border border-white/10 bg-white/5 hover:bg-white/10 text-gray-300 rounded-xl font-bold transition flex items-center justify-center gap-2 hover:border-white/20 hover:scale-[1.02]"
+                  >
+                    Connect on LinkedIn
+                  </a>
+                </div>
+
+                <div className="grid sm:grid-cols-3 gap-4">
+                  {[
+                    { label: 'Email', value: 'contactsujan247@gmail.com', href: 'mailto:contactsujan247@gmail.com' },
+                    { label: 'Phone', value: '903-508-3807', href: 'tel:9035083807' },
+                    { label: 'Location', value: 'Tyler, Texas', href: null },
+                  ].map((item, i) => (
+                    <div key={i} className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.03]">
+                      <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">{item.label}</p>
+                      {item.href ? (
+                        <a href={item.href} className="text-sm font-bold text-cyan-400 hover:text-cyan-300 transition break-all">
+                          {item.value}
+                        </a>
+                      ) : (
+                        <p className="text-sm font-bold text-gray-300">{item.value}</p>
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
-          </div>
+          </WindowPanel>
         </div>
       </section>
 
