@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp } from 'lucide-react';
+import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp, GraduationCap, Award } from 'lucide-react';
 import profileImg from '@/images/Sujan_Pic.js';
 
 export default function Portfolio() {
@@ -106,6 +106,33 @@ export default function Portfolio() {
     },
   ];
 
+  const education = [
+    {
+      degree: 'Master of Science – Computer Science',
+      institution: 'University of Texas at Tyler',
+      location: 'Tyler, Texas',
+      period: 'Aug 2023 – May 2025',
+      gpa: '3.66',
+      courses: ['Cybersecurity', 'Computer Networks', 'Machine Learning', 'Data Analytics'],
+    },
+    {
+      degree: 'Bachelor of Engineering – Computer Science & Engineering',
+      institution: 'Visvesvaraya Technological University',
+      location: 'Bangalore, India',
+      period: 'Jun 2017 – Aug 2021',
+      gpa: '3.86',
+      courses: ['C#', 'C++', 'Java', 'Python', 'Web Development'],
+    },
+  ];
+
+  const certifications = [
+    { name: 'Licensed Computer Engineer', issuer: 'Nepal Engineering Council', year: '2022' },
+    { name: 'Revit Add-In Development', issuer: 'Credmark', year: '2025' },
+    { name: 'Computer Networks and Network Security', issuer: 'IBM', year: null },
+    { name: 'SAP Professional Fundamentals', issuer: 'SAP', year: null },
+    { name: 'Foundations of Cybersecurity', issuer: 'Google', year: null },
+  ];
+
   const TABS = ['all', 'BIM Development', 'Enterprise Systems', 'Data & AI', 'Infrastructure', 'Education'];
   const filteredProjects = activeTab === 'all' ? projects : projects.filter(p => p.category === activeTab);
 
@@ -136,7 +163,7 @@ export default function Portfolio() {
             </a>
 
             <div className="hidden md:flex items-center gap-1">
-              {['Home', 'Projects', 'Skills', 'Contact'].map(item => (
+              {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -154,7 +181,7 @@ export default function Portfolio() {
 
           {isMenuOpen && (
             <div className="md:hidden py-4 space-y-1 border-t border-white/[0.06]">
-              {['Home', 'Projects', 'Skills', 'Contact'].map(item => (
+              {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -379,6 +406,93 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* ── Education & Certifications ── */}
+      <section id="education" className="py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="text-center mb-16">
+            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Background</p>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Education & Certifications</h2>
+            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+              Academic foundations and professional credentials
+            </p>
+          </div>
+
+          {/* Degrees */}
+          <div className="grid md:grid-cols-2 gap-5 mb-10">
+            {education.map((edu, i) => (
+              <div
+                key={i}
+                className="group relative p-7 rounded-2xl border border-white/[0.06] bg-white/[0.02] hover:border-cyan-500/25 hover:bg-cyan-500/[0.03] transition-all duration-300 overflow-hidden"
+              >
+                <div className="absolute -top-12 -right-12 w-40 h-40 rounded-full bg-cyan-500/10 blur-3xl group-hover:bg-cyan-500/20 transition pointer-events-none" />
+
+                <div className="relative">
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-cyan-500/20 to-violet-500/20 border border-cyan-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-cyan-500/40 transition">
+                      <GraduationCap size={20} className="text-cyan-400" />
+                    </div>
+                    <div>
+                      <h3 className="text-base font-bold text-white leading-snug group-hover:text-cyan-300 transition">
+                        {edu.degree}
+                      </h3>
+                      <p className="text-sm text-cyan-400 font-semibold mt-0.5">{edu.institution}</p>
+                      <p className="text-xs text-gray-600 mt-0.5">{edu.location} · {edu.period}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-2 mb-5">
+                    <span className="px-3 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold">
+                      GPA {edu.gpa}
+                    </span>
+                  </div>
+
+                  <div>
+                    <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-2">Relevant Coursework</p>
+                    <div className="flex flex-wrap gap-1.5">
+                      {edu.courses.map((c, j) => (
+                        <span
+                          key={j}
+                          className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                        >
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Certifications */}
+          <div>
+            <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-4 text-center">Certifications</p>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+              {certifications.map((cert, i) => (
+                <div
+                  key={i}
+                  className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 hover:bg-violet-500/[0.03] transition-all duration-300"
+                >
+                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/40 transition">
+                    <Award size={16} className="text-violet-400" />
+                  </div>
+                  <div className="min-w-0">
+                    <p className="text-sm font-bold text-gray-200 leading-snug truncate group-hover:text-white transition">
+                      {cert.name}
+                    </p>
+                    <p className="text-xs text-gray-600 mt-0.5">
+                      {cert.issuer}{cert.year ? ` · ${cert.year}` : ''}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
       {/* ── Testimonials ── */}
       <section className="py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
@@ -488,6 +602,7 @@ export default function Portfolio() {
             <a href="#home" className="hover:text-cyan-400 transition">Home</a>
             <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
             <a href="#skills" className="hover:text-cyan-400 transition">Skills</a>
+            <a href="#education" className="hover:text-cyan-400 transition">Education</a>
             <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
           </div>
         </div>
