@@ -597,7 +597,7 @@ export default function Portfolio() {
           <span className="text-lg font-black bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent tracking-widest">
             SK
           </span>
-          <p className="text-gray-700 text-xs">© 2025 Sujan Khadka · Licensed Computer Engineer</p>
+          <p className="text-gray-700 text-xs">© 2026 Sujan Khadka · Licensed Computer Engineer</p>
           <div className="flex gap-5 text-xs text-gray-700">
             <a href="#home" className="hover:text-cyan-400 transition">Home</a>
             <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
