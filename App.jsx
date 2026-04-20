@@ -620,20 +620,19 @@ export default function Portfolio() {
         </div>
       </section>
 
-      {/* ── Education & Certifications ── */}
+      {/* ── Education ── */}
       <section id="education" className="py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
           <div className="text-center mb-16">
             <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Background</p>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Education & Certifications</h2>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Education</h2>
             <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
-              Academic foundations and professional credentials
+              Academic foundations and degrees
             </p>
           </div>
 
-          {/* Degrees */}
-          <div className="grid md:grid-cols-2 gap-5 mb-10">
+          <div className="grid md:grid-cols-2 gap-5">
             {education.map((edu, i) => (
               <div
                 key={i}
@@ -679,29 +678,40 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* Certifications */}
-          <div id="certifications">
-            <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-4 text-center">Certifications</p>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {certifications.map((cert, i) => (
-                <div
-                  key={i}
-                  className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 hover:bg-violet-500/[0.03] transition-all duration-300"
-                >
-                  <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/40 transition">
-                    <Award size={16} className="text-violet-400" />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-bold text-gray-200 leading-snug truncate group-hover:text-white transition">
-                      {cert.name}
-                    </p>
-                    <p className="text-xs text-gray-600 mt-0.5">
-                      {cert.issuer}{cert.year ? ` · ${cert.year}` : ''}
-                    </p>
-                  </div>
+        </div>
+      </section>
+
+      {/* ── Certifications ── */}
+      <section id="certifications" className="py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+
+          <div className="text-center mb-16">
+            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Credentials</p>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Certifications</h2>
+            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+              Professional certifications and licenses
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {certifications.map((cert, i) => (
+              <div
+                key={i}
+                className="group flex items-center gap-4 p-4 rounded-xl border border-white/[0.06] bg-white/[0.02] hover:border-violet-500/25 hover:bg-violet-500/[0.03] transition-all duration-300"
+              >
+                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-violet-500/20 to-cyan-500/20 border border-violet-500/20 flex items-center justify-center flex-shrink-0 group-hover:border-violet-500/40 transition">
+                  <Award size={16} className="text-violet-400" />
                 </div>
-              ))}
-            </div>
+                <div className="min-w-0">
+                  <p className="text-sm font-bold text-gray-200 leading-snug truncate group-hover:text-white transition">
+                    {cert.name}
+                  </p>
+                  <p className="text-xs text-gray-600 mt-0.5">
+                    {cert.issuer}{cert.year ? ` · ${cert.year}` : ''}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
 
         </div>
