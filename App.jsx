@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
-import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp, GraduationCap, Award, Briefcase, MapPin, Calendar } from 'lucide-react';
+import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp, GraduationCap, Award, Briefcase, MapPin, Calendar, ChevronDown } from 'lucide-react';
 import profileImg from '@/images/Sujan_Pic.js';
 
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
+  const [expandedExp, setExpandedExp] = useState(new Set([0]));
+
+  const toggleExp = (i) => setExpandedExp(prev => {
+    const next = new Set(prev);
+    next.has(i) ? next.delete(i) : next.add(i);
+    return next;
+  });
 
   const projects = [
     {
@@ -405,7 +412,7 @@ export default function Portfolio() {
                   </div>
 
                   {/* Card */}
-                  <div className={`group relative rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl overflow-hidden ${
+                  <div className={`group relative rounded-2xl border transition-all duration-300 hover:shadow-2xl overflow-hidden ${
                     exp.current
                       ? 'border-cyan-500/25 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.03] hover:border-cyan-500/40 hover:shadow-cyan-500/10'
                       : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:shadow-white/5'
@@ -414,74 +421,79 @@ export default function Portfolio() {
                     {/* Card inner glow */}
                     <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-cyan-500/5 blur-3xl group-hover:bg-cyan-500/10 transition pointer-events-none" />
 
-                    <div className="relative p-6 sm:p-7">
-
-                      {/* Header */}
-                      <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
-                        <div className="flex items-start gap-3">
-                          {/* Mobile icon */}
-                          <div className={`sm:hidden w-10 h-10 rounded-xl flex items-center justify-center text-lg border flex-shrink-0 ${
-                            exp.current ? 'bg-cyan-500/15 border-cyan-500/30' : 'bg-white/[0.05] border-white/[0.08]'
-                          }`}>
-                            {exp.icon}
-                          </div>
-                          <div>
-                            <div className="flex flex-wrap items-center gap-2 mb-0.5">
-                              <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition leading-snug">
-                                {exp.role}
-                              </h3>
-                              {exp.current && (
-                                <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-[10px] font-black tracking-wide">
-                                  CURRENT
-                                </span>
-                              )}
-                            </div>
-                            <p className="text-sm font-bold text-cyan-400">{exp.company}</p>
-                            <div className="flex flex-wrap items-center gap-3 mt-1">
-                              <span className="flex items-center gap-1 text-xs text-gray-600">
-                                <MapPin size={11} /> {exp.location}
-                              </span>
-                              <span className="flex items-center gap-1 text-xs text-gray-600">
-                                <Calendar size={11} /> {exp.period}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-                        <div className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-bold flex-shrink-0 ${
-                          exp.current
-                            ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
-                            : 'bg-white/[0.03] border-white/[0.07] text-gray-500'
+                    {/* Clickable header */}
+                    <button
+                      onClick={() => toggleExp(i)}
+                      className="relative w-full text-left p-6 sm:p-7 flex items-start justify-between gap-4 cursor-pointer"
+                    >
+                      <div className="flex items-start gap-3 flex-1 min-w-0">
+                        {/* Mobile icon */}
+                        <div className={`sm:hidden w-10 h-10 rounded-xl flex items-center justify-center text-lg border flex-shrink-0 ${
+                          exp.current ? 'bg-cyan-500/15 border-cyan-500/30' : 'bg-white/[0.05] border-white/[0.08]'
                         }`}>
-                          <Briefcase size={12} /> {exp.current ? 'Full-time' : 'Full-time'}
+                          {exp.icon}
+                        </div>
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                            <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition leading-snug">
+                              {exp.role}
+                            </h3>
+                            {exp.current && (
+                              <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-[10px] font-black tracking-wide">
+                                CURRENT
+                              </span>
+                            )}
+                          </div>
+                          <p className="text-sm font-bold text-cyan-400">{exp.company}</p>
+                          <div className="flex flex-wrap items-center gap-3 mt-1">
+                            <span className="flex items-center gap-1 text-xs text-gray-600">
+                              <MapPin size={11} /> {exp.location}
+                            </span>
+                            <span className="flex items-center gap-1 text-xs text-gray-600">
+                              <Calendar size={11} /> {exp.period}
+                            </span>
+                          </div>
+                          {/* Tech tags always visible */}
+                          <div className="flex flex-wrap gap-1.5 mt-3">
+                            {exp.tech.map((t, j) => (
+                              <span
+                                key={j}
+                                className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                              >
+                                {t}
+                              </span>
+                            ))}
+                          </div>
                         </div>
                       </div>
 
-                      {/* Divider */}
-                      <div className="h-px bg-gradient-to-r from-white/[0.06] to-transparent mb-5" />
-
-                      {/* Bullets */}
-                      <ul className="space-y-2.5 mb-5">
-                        {exp.bullets.map((b, j) => (
-                          <li key={j} className="flex gap-3 text-sm text-gray-500 group-hover:text-gray-400 transition leading-relaxed">
-                            <span className="text-cyan-500/50 mt-[5px] flex-shrink-0 text-xs">▸</span>
-                            {b}
-                          </li>
-                        ))}
-                      </ul>
-
-                      {/* Tech tags */}
-                      <div className="flex flex-wrap gap-1.5">
-                        {exp.tech.map((t, j) => (
-                          <span
-                            key={j}
-                            className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
-                          >
-                            {t}
-                          </span>
-                        ))}
+                      {/* Chevron toggle */}
+                      <div className={`flex-shrink-0 w-8 h-8 rounded-lg border flex items-center justify-center transition-all duration-300 mt-0.5 ${
+                        expandedExp.has(i)
+                          ? 'bg-cyan-500/15 border-cyan-500/30 text-cyan-400'
+                          : 'bg-white/[0.04] border-white/[0.08] text-gray-600 group-hover:border-white/20 group-hover:text-gray-400'
+                      }`}>
+                        <ChevronDown
+                          size={15}
+                          className={`transition-transform duration-300 ${expandedExp.has(i) ? 'rotate-180' : ''}`}
+                        />
                       </div>
-                    </div>
+                    </button>
+
+                    {/* Expandable bullets */}
+                    {expandedExp.has(i) && (
+                      <div className="relative px-6 sm:px-7 pb-6 sm:pb-7">
+                        <div className="h-px bg-gradient-to-r from-white/[0.06] to-transparent mb-5" />
+                        <ul className="space-y-2.5">
+                          {exp.bullets.map((b, j) => (
+                            <li key={j} className="flex gap-3 text-sm text-gray-500 leading-relaxed">
+                              <span className="text-cyan-500/50 mt-[5px] flex-shrink-0 text-xs">▸</span>
+                              {b}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
                 </div>
               ))}
