@@ -302,7 +302,7 @@ export default function Portfolio() {
               <div className="flex items-center gap-4 mb-6">
                 <div className="h-px flex-1 max-w-[80px] bg-gradient-to-r from-cyan-500/60 to-transparent" />
                 <p className="text-gray-500 text-xs font-bold tracking-[0.2em] uppercase">
-                  BIM Developer · Software Engineer
+                  Software Engineer · BIM Developer
                 </p>
               </div>
 
