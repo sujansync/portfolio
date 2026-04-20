@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp, GraduationCap, Award } from 'lucide-react';
+import { Menu, X, ExternalLink, Mail, ArrowRight, Zap, TrendingUp, GraduationCap, Award, Briefcase, MapPin, Calendar } from 'lucide-react';
 import profileImg from '@/images/Sujan_Pic.js';
 
 export default function Portfolio() {
@@ -133,6 +133,88 @@ export default function Portfolio() {
     { name: 'Foundations of Cybersecurity', issuer: 'Google', year: null },
   ];
 
+  const experience = [
+    {
+      role: 'BIM Developer',
+      company: 'EMA Engineering & Consulting, Inc.',
+      location: 'Tyler, Texas',
+      period: 'May 2025 – Present',
+      current: true,
+      icon: '🏗️',
+      color: 'cyan',
+      bullets: [
+        'Develop and maintain custom Revit Add-Ins and automation tools using C# and the Autodesk Revit API.',
+        'Design BIM automation scripts and workflows to improve engineering design productivity and project delivery efficiency.',
+        'Build and support Revit-based BIM workflows that streamline project setup, modeling standards, and coordination across engineering teams.',
+        'Troubleshoot and maintain internal Revit toolbars and add-in systems used by design professionals across multiple disciplines.',
+        'Implement and enforce company BIM standards and drafting standards across engineering projects.',
+        'Document BIM workflows, provide technical reports, and communicate development progress with BIM management and production teams.',
+      ],
+      tech: ['Revit API', 'C#', 'BIM Automation', 'Revit Add-Ins'],
+    },
+    {
+      role: 'IT Analyst',
+      company: 'INVISTA',
+      location: 'Texas, United States',
+      period: 'Jan 2025 – May 2025',
+      current: false,
+      icon: '🔐',
+      color: 'violet',
+      bullets: [
+        'Supported enterprise network security, configuration, and infrastructure monitoring for IT and operational technology environments.',
+        'Monitored system performance and analyzed security risks to ensure infrastructure reliability.',
+        'Troubleshot network, firewall, and server-related issues to maintain business continuity.',
+        'Documented IT processes, compliance procedures, and technical performance reports.',
+      ],
+      tech: ['Network Security', 'Infrastructure Monitoring', 'Jira', 'ServiceNow'],
+    },
+    {
+      role: 'Graduate Research & Data Analytics Lab Assistant',
+      company: 'University of Texas at Tyler',
+      location: 'Tyler, Texas',
+      period: 'Aug 2023 – May 2025',
+      current: false,
+      icon: '🔬',
+      color: 'blue',
+      bullets: [
+        'Conducted research and data analysis on healthcare datasets related to adverse drug reactions.',
+        'Developed machine learning models for speech enhancement and accent conversion.',
+        'Built AI-driven data analysis tools utilizing Large Language Models (LLMs).',
+        'Presented research findings at the East Texas Research Conference.',
+      ],
+      tech: ['Machine Learning', 'Data Analytics', 'Artificial Intelligence', 'LLM'],
+    },
+    {
+      role: 'SAP Basis Security Consultant',
+      company: 'Quinnox',
+      location: 'Chicago, Illinois',
+      period: 'Aug 2021 – Jan 2024',
+      current: false,
+      icon: '⚙️',
+      color: 'violet',
+      bullets: [
+        'Managed SAP HANA replication and high-availability cluster environments for enterprise systems.',
+        'Implemented SAML-based Single Sign-On (SSO) across SAP applications.',
+        'Monitored enterprise SAP systems including ECC Production and PI/PO environments.',
+      ],
+      tech: ['SAP Basis', 'SAP Security', 'SAP ERP', 'SAP HANA'],
+    },
+    {
+      role: 'Technical Trainer',
+      company: 'Lithoera Technologies Pvt. Ltd.',
+      location: 'Bangalore, India',
+      period: 'Apr 2021 – Sep 2021',
+      current: false,
+      icon: '📚',
+      color: 'cyan',
+      bullets: [
+        'Delivered training programs in data science, Python programming, advanced Excel, and web development.',
+        'Prepared course materials and technical learning modules for software development education.',
+      ],
+      tech: ['Python', 'Data Science', 'Web Development'],
+    },
+  ];
+
   const TABS = ['all', 'BIM Development', 'Enterprise Systems', 'Data & AI', 'Infrastructure', 'Education'];
   const filteredProjects = activeTab === 'all' ? projects : projects.filter(p => p.category === activeTab);
 
@@ -163,7 +245,7 @@ export default function Portfolio() {
             </a>
 
             <div className="hidden md:flex items-center gap-1">
-              {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
+              {['Home', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -181,7 +263,7 @@ export default function Portfolio() {
 
           {isMenuOpen && (
             <div className="md:hidden py-4 space-y-1 border-t border-white/[0.06]">
-              {['Home', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
+              {['Home', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -284,6 +366,126 @@ export default function Portfolio() {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      {/* ── Experience ── */}
+      <section id="experience" className="py-28 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+
+          <div className="text-center mb-16">
+            <p className="text-cyan-400 text-xs font-bold tracking-[0.25em] uppercase mb-4">Career</p>
+            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">Professional Experience</h2>
+            <p className="text-gray-600 max-w-xl mx-auto text-sm leading-relaxed">
+              A track record across BIM development, enterprise systems, AI research, and technical training
+            </p>
+          </div>
+
+          <div className="relative">
+            {/* Timeline spine */}
+            <div className="absolute left-6 top-2 bottom-2 w-px bg-gradient-to-b from-cyan-500/60 via-violet-500/30 to-transparent hidden sm:block" />
+
+            <div className="space-y-6">
+              {experience.map((exp, i) => (
+                <div key={i} className="relative sm:pl-20">
+
+                  {/* Timeline node */}
+                  <div className="hidden sm:flex absolute left-0 top-6 flex-col items-center">
+                    <div className={`w-12 h-12 rounded-2xl flex items-center justify-center text-xl border-2 shadow-lg z-10 ${
+                      exp.current
+                        ? 'bg-gradient-to-br from-cyan-500/30 to-violet-500/30 border-cyan-500/60 shadow-cyan-500/25'
+                        : 'bg-gray-900 border-white/[0.10]'
+                    }`}>
+                      {exp.icon}
+                    </div>
+                    {exp.current && (
+                      <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/60 animate-pulse" />
+                    )}
+                  </div>
+
+                  {/* Card */}
+                  <div className={`group relative rounded-2xl border transition-all duration-300 hover:-translate-y-0.5 hover:shadow-2xl overflow-hidden ${
+                    exp.current
+                      ? 'border-cyan-500/25 bg-gradient-to-br from-cyan-500/[0.06] to-violet-500/[0.03] hover:border-cyan-500/40 hover:shadow-cyan-500/10'
+                      : 'border-white/[0.06] bg-white/[0.02] hover:border-white/[0.12] hover:shadow-white/5'
+                  }`}>
+
+                    {/* Card inner glow */}
+                    <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-cyan-500/5 blur-3xl group-hover:bg-cyan-500/10 transition pointer-events-none" />
+
+                    <div className="relative p-6 sm:p-7">
+
+                      {/* Header */}
+                      <div className="flex flex-wrap items-start justify-between gap-4 mb-5">
+                        <div className="flex items-start gap-3">
+                          {/* Mobile icon */}
+                          <div className={`sm:hidden w-10 h-10 rounded-xl flex items-center justify-center text-lg border flex-shrink-0 ${
+                            exp.current ? 'bg-cyan-500/15 border-cyan-500/30' : 'bg-white/[0.05] border-white/[0.08]'
+                          }`}>
+                            {exp.icon}
+                          </div>
+                          <div>
+                            <div className="flex flex-wrap items-center gap-2 mb-0.5">
+                              <h3 className="text-base font-black text-white group-hover:text-cyan-300 transition leading-snug">
+                                {exp.role}
+                              </h3>
+                              {exp.current && (
+                                <span className="px-2 py-0.5 rounded-full bg-emerald-500/15 border border-emerald-500/25 text-emerald-400 text-[10px] font-black tracking-wide">
+                                  CURRENT
+                                </span>
+                              )}
+                            </div>
+                            <p className="text-sm font-bold text-cyan-400">{exp.company}</p>
+                            <div className="flex flex-wrap items-center gap-3 mt-1">
+                              <span className="flex items-center gap-1 text-xs text-gray-600">
+                                <MapPin size={11} /> {exp.location}
+                              </span>
+                              <span className="flex items-center gap-1 text-xs text-gray-600">
+                                <Calendar size={11} /> {exp.period}
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className={`hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-bold flex-shrink-0 ${
+                          exp.current
+                            ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400'
+                            : 'bg-white/[0.03] border-white/[0.07] text-gray-500'
+                        }`}>
+                          <Briefcase size={12} /> {exp.current ? 'Full-time' : 'Full-time'}
+                        </div>
+                      </div>
+
+                      {/* Divider */}
+                      <div className="h-px bg-gradient-to-r from-white/[0.06] to-transparent mb-5" />
+
+                      {/* Bullets */}
+                      <ul className="space-y-2.5 mb-5">
+                        {exp.bullets.map((b, j) => (
+                          <li key={j} className="flex gap-3 text-sm text-gray-500 group-hover:text-gray-400 transition leading-relaxed">
+                            <span className="text-cyan-500/50 mt-[5px] flex-shrink-0 text-xs">▸</span>
+                            {b}
+                          </li>
+                        ))}
+                      </ul>
+
+                      {/* Tech tags */}
+                      <div className="flex flex-wrap gap-1.5">
+                        {exp.tech.map((t, j) => (
+                          <span
+                            key={j}
+                            className="px-2.5 py-1 rounded-md bg-white/[0.05] border border-white/[0.08] text-gray-500 text-[11px] font-semibold group-hover:border-cyan-500/20 group-hover:text-gray-400 transition"
+                          >
+                            {t}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
@@ -600,6 +802,7 @@ export default function Portfolio() {
           <p className="text-gray-700 text-xs">© 2025 Sujan Khadka · Licensed Computer Engineer</p>
           <div className="flex gap-5 text-xs text-gray-700">
             <a href="#home" className="hover:text-cyan-400 transition">Home</a>
+            <a href="#experience" className="hover:text-cyan-400 transition">Experience</a>
             <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
             <a href="#skills" className="hover:text-cyan-400 transition">Skills</a>
             <a href="#education" className="hover:text-cyan-400 transition">Education</a>
