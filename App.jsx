@@ -64,7 +64,7 @@ export default function Portfolio() {
       description: 'Comprehensive training programs in data science, Python, and web development for professionals.',
       image: '📚',
       tags: ['Python', 'Data Science', 'Web Dev'],
-      impact: '500+ students trained',
+      impact: '100+ students trained',
       link: '#',
     },
   ];
@@ -73,7 +73,7 @@ export default function Portfolio() {
     { label: 'Years Experience', value: '4+' },
     { label: 'Projects Completed', value: '15+' },
     { label: 'Technologies', value: '20+' },
-    { label: 'Students Trained', value: '500+' },
+    { label: 'Students Trained', value: '100+' },
   ];
 
   const skills = [
