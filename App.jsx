@@ -252,7 +252,7 @@ export default function Portfolio() {
             </a>
 
             <div className="hidden md:flex items-center gap-1">
-              {['Home', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
+              {['Home', 'Experience', 'Projects', 'Skills', 'Education', 'Certifications', 'Reviews', 'Contact'].map(item => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -270,7 +270,7 @@ export default function Portfolio() {
 
           {isMenuOpen && (
             <div className="md:hidden py-4 space-y-1 border-t border-white/[0.06]">
-              {['Home', 'Experience', 'Projects', 'Skills', 'Education', 'Contact'].map(item => (
+              {['Home', 'Experience', 'Projects', 'Skills', 'Education', 'Certifications', 'Reviews', 'Contact'].map(item => (
                 <a
                   key={item}
                   href={`#${item.toLowerCase()}`}
@@ -680,7 +680,7 @@ export default function Portfolio() {
           </div>
 
           {/* Certifications */}
-          <div>
+          <div id="certifications">
             <p className="text-[10px] text-gray-600 font-bold uppercase tracking-widest mb-4 text-center">Certifications</p>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {certifications.map((cert, i) => (
@@ -708,7 +708,7 @@ export default function Portfolio() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section className="py-28 px-4 sm:px-6 lg:px-8">
+      <section id="reviews" className="py-28 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
 
           <div className="text-center mb-16">
@@ -818,6 +818,8 @@ export default function Portfolio() {
             <a href="#projects" className="hover:text-cyan-400 transition">Projects</a>
             <a href="#skills" className="hover:text-cyan-400 transition">Skills</a>
             <a href="#education" className="hover:text-cyan-400 transition">Education</a>
+            <a href="#certifications" className="hover:text-cyan-400 transition">Certifications</a>
+            <a href="#reviews" className="hover:text-cyan-400 transition">Reviews</a>
             <a href="#contact" className="hover:text-cyan-400 transition">Contact</a>
           </div>
         </div>
