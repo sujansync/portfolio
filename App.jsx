@@ -165,8 +165,8 @@ export default function Portfolio() {
     { name: 'Claude Code in Action', issuer: 'Anthropic', year: 'April 2026' },
     { name: 'Revit Add-In Development', issuer: 'Credmark', year: 'Sep 2025' },
     { name: 'Computer Networks and Network Security', issuer: 'IBM', year: 'Mar 2025' },
-    { name: 'SAP Professional Fundamentals', issuer: 'SAP', year: 'Feb 2025' },
     { name: 'Foundations of Cybersecurity', issuer: 'Google', year: 'Feb 2025' },
+    { name: 'SAP Professional Fundamentals', issuer: 'SAP', year: 'Feb 2025' },
     { name: 'Licensed Computer Engineer', issuer: 'Nepal Engineering Council', year: 'Sep 2022' }
   ];
 
