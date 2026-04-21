@@ -149,7 +149,7 @@ export default function Portfolio() {
       location: 'Tyler, Texas',
       period: 'Aug 2023 – May 2025',
       gpa: '3.66',
-      courses: ['Cybersecurity', 'Computer Networks', 'Machine Learning', 'Data Analytics'],
+      courses: ['Cybersecurity', 'Computer Networks', 'Machine Learning', 'Data Analytics', 'Artificial Intelligence'],
     },
     {
       degree: 'Bachelor of Engineering – Computer Science & Engineering',
@@ -157,7 +157,7 @@ export default function Portfolio() {
       location: 'Bangalore',
       period: 'Jun 2017 – Aug 2021',
       gpa: '3.86',
-      courses: ['C#', 'C++', 'Java', 'Python', 'Web Development'],
+      courses: ['C#', 'C++', 'Java', 'Python','Data Structures', 'Web Development'],
     },
   ];
 
