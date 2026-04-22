@@ -4,7 +4,7 @@ import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
   plugins: [react()],
-  base: '/SK-Portfolio/',
+  base: '/portfolio/',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('.', import.meta.url)),
