@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sujan Khadka - Portfolio Thumbnail</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            width: 1200px;
+            height: 627px;
+            background: linear-gradient(135deg, #0d111e 0%, #0f1929 50%, #1a0f2e 100%);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Animated gradient background elements */
+        .bg-gradient {
+            position: absolute;
+            opacity: 0.15;
+        }
+
+        .gradient-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.8) 0%, transparent 70%);
+            top: -200px;
+            left: -150px;
+            animation: float 8s ease-in-out infinite;
+        }
+
+        .gradient-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.6) 0%, transparent 70%);
+            bottom: -100px;
+            right: -100px;
+            animation: float 10s ease-in-out infinite reverse;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(20px, 20px); }
+        }
+
+        .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            padding: 60px;
+            gap: 80px;
+        }
+
+        .left-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .main-title {
+            font-size: 56px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .tagline {
+            font-size: 20px;
+            color: #cbd5e1;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.15) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.3);
+            color: #06b6d4;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            backdrop-filter: blur(10px);
+            letter-spacing: 0.3px;
+        }
+
+        .right-section {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.08) 0%, rgba(139, 92, 246, 0.05) 100%);
+            border: 1px solid rgba(6, 182, 212, 0.2);
+            border-radius: 12px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 12px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            border-color: rgba(6, 182, 212, 0.4);
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.12) 0%, rgba(139, 92, 246, 0.08) 100%);
+            transform: translateY(-4px);
+        }
+
+        .stat-icon {
+            font-size: 40px;
+            line-height: 1;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #94a3b8;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        .stat-value {
+            font-size: 20px;
+            font-weight: 700;
+            background: linear-gradient(135deg, #06b6d4 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .accent-line {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #06b6d4 0%, #3b82f6 50%, #8b5cf6 100%);
+        }
+
+        .portfolio-url {
+            position: absolute;
+            bottom: 20px;
+            right: 40px;
+            font-size: 14px;
+            color: #64748b;
+            font-weight: 600;
+            letter-spacing: 0.3px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .portfolio-url::before {
+            content: '→';
+            color: #06b6d4;
+            font-size: 16px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 100%;
+                height: auto;
+                aspect-ratio: 1200 / 627;
+            }
+
+            .content {
+                padding: 30px;
+                gap: 40px;
+                flex-direction: column;
+            }
+
+            .main-title {
+                font-size: 36px;
+            }
+
+            .right-section {
+                gap: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Animated gradient backgrounds -->
+        <div class="bg-gradient gradient-1"></div>
+        <div class="bg-gradient gradient-2"></div>
+
+        <!-- Main content -->
+        <div class="content">
+            <!-- Left section: Title and expertise -->
+            <div class="left-section">
+                <div>
+                    <h1 class="main-title">Sujan Khadka</h1>
+                    <p class="tagline">Full-Stack Technical Professional</p>
+                </div>
+
+                <div class="expertise-tags">
+                    <span class="tag">🏗️ BIM & Revit</span>
+                    <span class="tag">🔐 Enterprise Systems</span>
+                    <span class="tag">🤖 AI & ML</span>
+                    <span class="tag">📡 Infrastructure</span>
+                </div>
+            </div>
+
+            <!-- Right section: Expertise highlights -->
+            <div class="right-section">
+                <div class="stat-box">
+                    <span class="stat-icon">🏗️</span>
+                    <span class="stat-label">BIM Expertise</span>
+                    <span class="stat-value">Revit API</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">🔐</span>
+                    <span class="stat-label">Enterprise</span>
+                    <span class="stat-value">SAP & Security</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">🤖</span>
+                    <span class="stat-label">AI & Analytics</span>
+                    <span class="stat-value">ML Models</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-icon">📊</span>
+                    <span class="stat-label">Data Science</span>
+                    <span class="stat-value">Python & Tools</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Portfolio URL -->
+        <div class="portfolio-url">sujankhadka.com</div>
+
+        <!-- Accent line -->
+        <div class="accent-line"></div>
+    </div>
+</body>
+</html>
