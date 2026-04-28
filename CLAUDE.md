@@ -17,26 +17,47 @@ There are no tests configured.
 
 Single-page React portfolio app for Sujan Khadka, built with Vite + Tailwind CSS + lucide-react.
 
-**`App.jsx`** — the entire UI is one default-exported component (`Portfolio`) containing:
-- State: `isMenuOpen` (mobile nav), `scrollY` (scroll position), `activeTab` (project filter)
-- Inline data arrays: `projects`, `skills`, `testimonials`, `education`, `certifications` — edit these to update content
-- Tailwind CSS for all styling; dark mode uses `dark:` variants (class strategy)
-- lucide-react for icons
+**`App.jsx`** — the entire UI is two components:
 
-**Section order:** Hero → Projects → Skills → Education & Certifications → Testimonials → Contact
+- `WindowPanel` — reusable chrome-style browser-window wrapper (accent gradient line, macOS traffic-light dots, fake URL bar). Props: `url` (string), `gradient` (Tailwind gradient classes, has a default). Every major section is wrapped in one.
+- `Portfolio` (default export) — full page with all state, data arrays, and JSX sections.
 
-Nav links: Home, Projects, Skills, Education, Contact (same array used for desktop nav, mobile menu, and footer).
+**State in `Portfolio`:**
+- `isMenuOpen` — mobile nav overlay open/closed
+- `activeTab` — active project filter tab, default `'all'`
+- `expandedExp` — `Set<number>` of open experience accordion indices; index 0 is open by default. `toggleExp(i)` adds/removes `i`.
 
-**`images/Sujan_Pic.js`** — exports a Base64-encoded profile image string. The `@/images/` import alias resolves to the project root via `vite.config.js`.
+**Inline data arrays** (edit these to update content):
+- `projects` — `{ id, title, category, description, image (emoji), tags, impact, link }`
+- `stats` — `{ label, value, href }` — hero stat counters; each tile is an anchor that scrolls to `href` on click
+- `skills` — `{ category, items[] }` — skill tag groups
+- `testimonials` — `{ name, company, text, rating }`
+- `education` — `{ degree, institution, location, period, gpa, courses[] }`
+- `certifications` — `{ name, issuer, year }`
+- `experience` — `{ role, company, location, period, current (bool), icon (emoji), bullets[], tech[] }`
 
-**`vite.config.js`** — sets `base: '/uigen-components/'` for GitHub Pages deployment and `@` → project root alias.
+**Section order:** Hero → Experience → Projects → Skills → Education → Certifications → Reviews → Contact → Footer
+
+**Nav links** (hardcoded inline in nav JSX and footer — update in both places if adding a section): Home, Experience, Projects, Skills, Education, Certifications, Reviews, Contact.
+
+**`images/Sujan_Pic.js`** — exports a Base64-encoded profile image string imported via the `@` alias.
+
+**`vite.config.js`** — `base: '/portfolio/'` for GitHub Pages; `@` alias → project root.
+
+**`tailwind.config.js`** — content paths: `index.html`, `App.jsx`, `main.jsx` only. `darkMode: 'class'`. The UI is fixed dark-theme; no toggle.
+
+**`index.css`** — defines two custom animation utilities used in the app:
+- `animate-float` — gentle vertical float on the profile image (6 s, ±12 px)
+- `animate-glow-pulse` — opacity pulse on the ambient background orbs (4 s)
 
 ## Deployment
 
-Pushes to `main` trigger the GitHub Actions workflow (`.github/workflows/deploy.yml`) which builds and deploys to GitHub Pages automatically.
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds with Node 20 and deploys `dist/` to GitHub Pages. Live URL: `https://sujansync.github.io/portfolio/`
 
 ## Key Patterns
 
-- Project filtering: `project.category` is matched against `activeTab`; new categories must be added to both the filter button list and the project data with matching strings.
-- Mobile menu: `isMenuOpen` drives both the hamburger/X icon swap and the full-screen overlay visibility.
-- Parallax: `scrollY` state feeds inline `transform: translateY(...)` styles — avoid removing the scroll listener if parallax sections are still in use.
+- **Project filtering:** `TABS` constant (`['all', 'BIM Development', 'Enterprise Systems', 'Data & AI', 'Infrastructure', 'Education']`) drives the filter buttons. A project's `category` must exactly match a TABS entry to appear in that tab — projects with any other category string (e.g. `'AI Research'`) only appear under `'all'`. Add new categories to both `TABS` and the project object.
+- **Experience accordion:** `expandedExp` is a `Set`; clicking a card calls `toggleExp(i)`. Multiple items can be open simultaneously.
+- **Mobile menu:** `isMenuOpen` controls the hamburger/X swap and the dropdown under the nav bar (not a full-screen overlay — it's an inline block below the nav).
+- **WindowPanel gradient:** each section passes a different `gradient` prop to give each panel a distinct accent color on its top border line.
+- **OG image:** `public/og-image.png` (1200×627) is referenced in `index.html` meta tags for LinkedIn/Twitter previews. The source template is `portfolio-thumbnail.html`.

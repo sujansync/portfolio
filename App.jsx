@@ -106,11 +106,11 @@ export default function Portfolio() {
   ];
 
   const stats = [
-    { label: 'Years Experience', value: '4+' },
-    { label: 'Major Certifications', value: '5+' },
-    { label: 'Projects Completed', value: '15+' },
-    { label: 'Technologies', value: '20+' },
-    { label: 'Students Trained', value: '100+' },
+    { label: 'Years Experience', value: '4+', href: '#experience' },
+    { label: 'Major Certifications', value: '5+', href: '#certifications' },
+    { label: 'Projects Completed', value: '15+', href: '#projects' },
+    { label: 'Technologies', value: '20+', href: '#skills' },
+    { label: 'Students Trained', value: '100+', href: '#experience' },
   ];
 
   const skills = [
@@ -356,9 +356,10 @@ export default function Portfolio() {
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
                 {stats.map((s, i) => (
-                  <div
+                  <a
                     key={i}
-                    className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:border-cyan-500/30 hover:bg-cyan-500/5 transition text-center group"
+                    href={s.href}
+                    className="p-4 rounded-xl border border-white/[0.06] bg-white/[0.03] hover:border-cyan-500/30 hover:bg-cyan-500/5 transition text-center group cursor-pointer"
                   >
                     <p className="text-2xl font-black bg-gradient-to-r from-cyan-400 to-violet-400 bg-clip-text text-transparent">
                       {s.value}
@@ -366,7 +367,7 @@ export default function Portfolio() {
                     <p className="text-[11px] text-gray-600 font-medium mt-1 group-hover:text-gray-500 transition">
                       {s.label}
                     </p>
-                  </div>
+                  </a>
                 ))}
               </div>
             </div>
