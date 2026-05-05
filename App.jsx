@@ -106,7 +106,7 @@ export default function Portfolio() {
   ];
 
   const stats = [
-    { label: 'Years Experience', value: '4+', href: '#experience' },
+    { label: 'Years Experience', value: '5+', href: '#experience' },
     { label: 'Major Certifications', value: '5+', href: '#certifications' },
     { label: 'Projects Completed', value: '15+', href: '#projects' },
     { label: 'Technologies', value: '20+', href: '#skills' },
