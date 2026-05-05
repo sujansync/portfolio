@@ -31,6 +31,32 @@ function WindowPanel({ children, url, gradient = 'from-cyan-500/50 via-blue-500/
   );
 }
 
+function getDuration(period, isCurrent) {
+  const mon = { Jan:1, Feb:2, Mar:3, Apr:4, May:5, Jun:6, Jul:7, Aug:8, Sep:9, Oct:10, Nov:11, Dec:12 };
+  const [startPart] = period.split(' – ');
+  const [sm, sy] = startPart.split(' ');
+  const startMonth = mon[sm], startYear = parseInt(sy);
+
+  let endMonth, endYear, total;
+  if (isCurrent) {
+    const now = new Date();
+    endMonth = now.getMonth() + 1;
+    endYear = now.getFullYear();
+    total = (endYear - startYear) * 12 + (endMonth - startMonth);
+  } else {
+    const [em, ey] = period.split(' – ')[1].split(' ');
+    endMonth = mon[em];
+    endYear = parseInt(ey);
+    total = (endYear - startYear) * 12 + (endMonth - startMonth) + 1;
+  }
+
+  const yrs = Math.floor(total / 12);
+  const mos = total % 12;
+  if (yrs === 0) return `${mos} mos`;
+  if (mos === 0) return `${yrs} yr`;
+  return `${yrs} yr ${mos} mos`;
+}
+
 export default function Portfolio() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('all');
@@ -470,7 +496,7 @@ export default function Portfolio() {
                                   <MapPin size={11} /> {exp.location}
                                 </span>
                                 <span className="flex items-center gap-1 text-xs text-gray-600">
-                                  <Calendar size={11} /> {exp.period}
+                                  <Calendar size={11} /> {exp.period} · {getDuration(exp.period, exp.current)}
                                 </span>
                               </div>
                               <div className="flex flex-wrap gap-1.5 mt-3">

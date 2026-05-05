@@ -44,7 +44,7 @@ Single-page React portfolio app for Sujan Khadka, built with Vite + Tailwind CSS
 
 **`vite.config.js`** — `base: '/portfolio/'` for GitHub Pages; `@` alias → project root.
 
-**`tailwind.config.js`** — content paths: `index.html`, `App.jsx`, `main.jsx` only. `darkMode: 'class'`. The UI is fixed dark-theme; no toggle.
+**`tailwind.config.js`** — content paths: `index.html`, `App.jsx`, `main.jsx` only. `darkMode: 'class'`. The UI is fixed dark-theme; no toggle. **If you add a new JSX file, add it to `content` here or its Tailwind classes will be purged from the production build.**
 
 **`index.css`** — defines two custom animation utilities used in the app:
 - `animate-float` — gentle vertical float on the profile image (6 s, ±12 px)
@@ -52,7 +52,7 @@ Single-page React portfolio app for Sujan Khadka, built with Vite + Tailwind CSS
 
 ## Deployment
 
-Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds with Node 20 and deploys `dist/` to GitHub Pages. Live URL: `https://sujansync.github.io/portfolio/`
+Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds with Node 20 and deploys `dist/` to GitHub Pages. The workflow also has `workflow_dispatch`, so you can trigger a deploy manually from the GitHub Actions UI without pushing. Live URL: `https://sujansync.github.io/portfolio/`
 
 ## Key Patterns
 
@@ -60,4 +60,4 @@ Pushes to `main` trigger `.github/workflows/deploy.yml`, which builds with Node 
 - **Experience accordion:** `expandedExp` is a `Set`; clicking a card calls `toggleExp(i)`. Multiple items can be open simultaneously.
 - **Mobile menu:** `isMenuOpen` controls the hamburger/X swap and the dropdown under the nav bar (not a full-screen overlay — it's an inline block below the nav).
 - **WindowPanel gradient:** each section passes a different `gradient` prop to give each panel a distinct accent color on its top border line.
-- **OG image:** `public/og-image.png` (1200×627) is referenced in `index.html` meta tags for LinkedIn/Twitter previews. The source template is `portfolio-thumbnail.html`.
+- **OG image:** `public/og-image.png` (1200×627) is referenced in `index.html` meta tags for LinkedIn/Twitter previews. To regenerate it: open `portfolio-thumbnail.html` directly in a browser, screenshot the 1200×627 card element, and save the result as `public/og-image.png`.
