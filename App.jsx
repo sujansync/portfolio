@@ -133,7 +133,7 @@ export default function Portfolio() {
 
   const stats = [
     { label: 'Years Experience', value: '5+', href: '#experience' },
-    { label: 'Major Certifications', value: '5+', href: '#certifications' },
+    { label: 'Major Certifications', value: '6+', href: '#certifications' },
     { label: 'Projects Completed', value: '15+', href: '#projects' },
     { label: 'Technologies', value: '20+', href: '#skills' },
     { label: 'Students Trained', value: '100+', href: '#experience' },
@@ -189,6 +189,7 @@ export default function Portfolio() {
   ];
 
   const certifications = [
+    { name: 'Generative AI: Prompt Engineering', issuer: 'IBM', year: 'June 2026' },
     { name: 'Claude Code in Action', issuer: 'Anthropic', year: 'April 2026' },
     { name: 'Revit Add-In Development', issuer: 'Credmark', year: 'Sep 2025' },
     { name: 'Computer Networks and Network Security', issuer: 'IBM', year: 'Mar 2025' },
